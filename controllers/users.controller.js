@@ -14,8 +14,8 @@ export const CreateUser = async (req, res) => {
     try {
         const { Name, Lastname, Email, Identification, Password, Role } = req.body;
         if (Name && Lastname && Email && Identification  && Password && Role) {
-            const UsuarioRepetido = await User.findOne({ Email });
-            if (UsuarioRepetido) {
+            const SameUser = await User.findOne({ Email });
+            if (SameUser) {
                 res.status(400).json('The email is already registered');
             } else {
                 const user = new User({
@@ -23,7 +23,7 @@ export const CreateUser = async (req, res) => {
                     Lastname,
                     Email,
                     Identification,
-                    Password: bcrypt.hashSync(contraseña, 10),
+                    Password: bcrypt.hashSync(Password, 10),
                     Role
                 });
                 await user.save();
