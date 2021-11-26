@@ -282,7 +282,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/State",
+                  $ref: "#/components/schemas/StateUser",
                 },
               },
             },
@@ -685,7 +685,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/State",
+                  $ref: "#/components/schemas/StateProject",
                 },
               },
             },
@@ -1050,13 +1050,23 @@ export const swaggerOptions = {
             },
           },
         },
-        State: {
+        StateUser: {
           type: "object",
           required: ["State"],
           properties: {
             State: {
               type: "string",
               example: "AUTHORIZED",
+            },
+          },
+        },
+        StateProject: {
+          type: "object",
+          required: ["State"],
+          properties: {
+            State: {
+              type: "string",
+              example: "ACTIVE",
             },
           },
         },
