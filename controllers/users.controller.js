@@ -73,7 +73,7 @@ export const UpdateState = async (req, res) => {
         if (user) {
             const updates = { State };
             const options = { new: true };
-            await Producto.findByIdAndUpdate(id, updates, options);
+            await User.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'State of the user updated successfully' });
         } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
