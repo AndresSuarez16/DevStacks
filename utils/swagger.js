@@ -827,9 +827,9 @@ export const swaggerOptions = {
         },
         UserState: {
           type: "object",
-          required: ["ESTADO"],
+          required: ["estado"],
           properties: {
-            descripcion: {
+            estado: {
               type: "string",
               example: "AUTORIZADO",
             },
