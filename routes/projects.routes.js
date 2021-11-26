@@ -11,8 +11,8 @@ router.post('/New', Projects.CreateProject);
 
 router.post('/Objectives/:id', Projects.Objectives);
 
-router.put('/UpdateState/:id', Users.UpdateState);
+router.put('/UpdateState/:id', Projects.UpdateState);
 
-router.put('/UpdatePhase/:id', Users.UpdatePhase);
+router.put('/UpdatePhase/:id', Projects.UpdatePhase);
 
 export default router;
