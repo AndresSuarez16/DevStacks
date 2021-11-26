@@ -13,7 +13,7 @@ router.post('/Login', Users.Login);
 
 router.put('/Update', Check, Users.UpdateUsers);
 
-router.put('/UpdateState', Check, Users.UpdateUsers);
+router.put('/UpdateState', Check, Users.UpdateState);
 
 router.delete('/Delete/:id', Admin, Users.DeleteUsers);
 

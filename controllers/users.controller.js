@@ -55,6 +55,7 @@ export const Login = async (req, res) => {
 export const UpdateUsers = async (req, res) => {
     try {
         const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
+        const bearerHeader = req.headers['authorization'];
         if (bearerHeader) {
             const bearer = bearerHeader.split(" ");
             console.log(bearer);
