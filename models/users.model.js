@@ -3,35 +3,35 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
-    nombre: {
+    Name: {
         type: String,
         required: true
     },
-    apellido: {
+    Lastname: {
         type: String,
         required: true
     },
-    correo: {
+    Email: {
         type: String,
         required: true
     },
-    identificacion: {
+    Identification: {
         type: String,
         required: true
     },
-    contraseña: {
+    Password: {
         type: String,
         required: true
     },
-    rol: {
+    Role: {
         type: String,
         required: true,
-        enum: ['ESTUDIANTE', 'LIDER', 'ADMINISTRADOR'],
+        enum: ['STUDENT', 'LEADER', 'ADMINISTRATOR'],
     },
-    estado: {
+    State: {
         type: String,
-        enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
-        default: 'PENDIENTE',
+        enum: ['PENDING', 'AUTHORIZED', 'UNAUTHORIZED'],
+        default: 'PENDING',
     }
 });
 

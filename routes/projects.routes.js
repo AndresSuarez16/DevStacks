@@ -11,10 +11,8 @@ router.post('/New', Projects.CreateProject);
 
 router.post('/Objectives/:id', Projects.Objectives);
 
-/**router.post('/Login', Users.Login);
+router.put('/UpdateState/:id', Users.UpdateState);
 
-router.put('/Update/:id', Check, Users.UpdateUsers);
-
-router.delete('/Delete/:id', Admin, Users.DeleteUsers);**/
+router.put('/UpdatePhase/:id', Users.UpdatePhase);
 
 export default router;

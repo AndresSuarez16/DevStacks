@@ -13,7 +13,7 @@ export const AllProjects = async (req, res) => {
 
 export const CreateProject = async (req, res) => {
     try {
-        const { nombre, presupuesto, fechaInicio, fechaFin } = req.body;
+        const { Name, Budget, Initial_Date, End_Date } = req.body;
         const bearerHeader = req.headers['authorization'];
         if (bearerHeader) {
             const bearer = bearerHeader.split(" ");
@@ -23,9 +23,9 @@ export const CreateProject = async (req, res) => {
             const decoded = await jwt.verify(token, config.secret);
             const id = decoded.id;
             const user = await User.findById(id);
-            const lider = user.nombre;
+            const Leader = user.nombre;
 
-            const project = new Project({ nombre, presupuesto, fechaInicio, fechaFin, lider });
+            const project = new Project({ Name, Budget, Initial_Date, End_Date, Leader });
             await project.save();
             res.status(201).json('Project created successfully');
         } else { res.status(400).json('There is no data'); }
@@ -35,15 +35,41 @@ export const CreateProject = async (req, res) => {
 export const Objectives = async (req, res) =>
 {
     try {
-        const {descripcion, tipo} = req.body;
+        const {Description, Type} = req.body;
 
-        if(descripcion && tipo)
+        if(Description && Type)
         {
             const Add = await Project.findById(req.params.id);
-            Add.objetivos.push({...req.body});
+            Add.Objectives.push({...req.body});
             await Add.save();
             res.status(201).json({msg: 'Objective created successfully'});
         } else { res.status(400).json('There is no data'); }
+    } catch (error) { res.status(404).json(error); }
+};
+
+export const UpdateState = async (req, res) => {
+    try {
+        const { id } = req.params.id;
+        const { State } = req.body;
+        if (State) {
+            const updates = { ...req.body };
+            const options = { new: true };
+            await Producto.findByIdAndUpdate(id, updates, options);
+            res.status(200).json({ msg: 'State of the project updated successfully' });
+        } else { res.status(400).json({err: 'There is no data'}); }
+    } catch (error) { res.status(404).json(error); }
+};
+
+export const UpdatePhase = async (req, res) => {
+    try {
+        const { id } = req.params.id;
+        const { Phase } = req.body;
+        if (Phase) {
+            const updates = { ...req.body };
+            const options = { new: true };
+            await Producto.findByIdAndUpdate(id, updates, options);
+            res.status(200).json({ msg: 'Phase updated successfully' });
+        } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };
 

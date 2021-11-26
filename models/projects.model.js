@@ -3,44 +3,44 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const projectSchema = new Schema({
-    nombre: {
+    Name: {
         type: String,
         required: true,
     },
-    presupuesto: {
+    Budget: {
         type: Number,
         required: true,
     },
-    fechaInicio: {
+    Initial_Date: {
         type: Date,
         required: true,
     },
-    fechaFin: {
+    End_Date: {
         type: Date,
         required: true,
     },
-    estado: {
+    State: {
         type: String,
-        enum: ['ACTIVO', 'INACTIVO'],
-        default: 'INACTIVO',
+        enum: ['ACTIVE', 'INACTIVE'],
+        default: 'INACTIVE',
     },
-    fase: {
+    Phase: {
         type: String,
-        enum: ['INICIADO', 'DESARROLLO', 'TERMINADO', 'NULO'],
-        default: 'NULO',
+        enum: ['STARTED', 'DEVELOPMENT', 'FINISHED', 'NULL'],
+        default: 'NULL',
     },
-    lider: {
+    Leader: {
         type: String
     },
-    objetivos: [
+    Objectives: [
         {
-            descripcion: {
+            Description: {
                 type: String,
                 required: true,
             },
-            tipo: {
+            Type: {
                 type: String,
-                enum: ['GENERAL', 'ESPECIFICO'],
+                enum: ['GENERAL', 'SPECIFIC'],
                 required: true,
             },
         },

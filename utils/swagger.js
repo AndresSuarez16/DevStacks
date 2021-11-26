@@ -30,6 +30,7 @@ export const swaggerOptions = {
       "/users": {
         get: {
           tags: ["Users"],
+          summary: "Administrators can see the whole list of users",
           responses: {
             200: {
               description: "Ok",
@@ -48,7 +49,6 @@ export const swaggerOptions = {
         post: {
           tags: ["Users"],
           summary: "To create users",
-          description: "Create users",
           security: [],
           requestBody: {
             content: {
@@ -127,7 +127,6 @@ export const swaggerOptions = {
         post: {
           tags: ["Users"],
           summary: "To login inside the page and get the Token",
-          description: "Login",
           requestBody: {
             content: {
               "application/json": {
@@ -192,11 +191,12 @@ export const swaggerOptions = {
       "/users/UpdateData/{id}": {
         put: {
           tags: ["Users"],
+          summary: "Users can uptate their information",
           parameters: [
             {
               in: "path",
               name: "id",
-              description: "Identificador del usuario",
+              description: "Id of the user",
               required: true,
               schema: {
                 type: "string",
@@ -265,11 +265,12 @@ export const swaggerOptions = {
       "/users/UpdateState/{id}": {
         put: {
           tags: ["Users"],
+          summary: "Administrators can update the state of a user",
           parameters: [
             {
               in: "path",
               name: "id",
-              description: "Identificador del usuario",
+              description: "Id of the user",
               required: true,
               schema: {
                 type: "string",
@@ -281,7 +282,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/UserState",
+                  $ref: "#/components/schemas/State",
                 },
               },
             },
@@ -341,8 +342,7 @@ export const swaggerOptions = {
       "/users/Delete/{id}": {
         delete: {
           tags: ["Users"],
-          summary: "Para que los administradores eliminen usuarios del sistema",
-          description: "Para eliminar alguno de los usuarios existentes",
+          summary: "Administrators can delelete a user",
           parameters: [
             {
               in: "path",
@@ -410,6 +410,7 @@ export const swaggerOptions = {
       "/inscriptions": {
         get: {
           tags: ["Inscriptions"],
+          summary: "Users can register in a project",
           responses: {
             200: {
               description: "Ok",
@@ -427,8 +428,7 @@ export const swaggerOptions = {
       "/inscriptions/New/{id}": {
         post: {
           tags: ["Inscriptions"],
-          summary: "To create users",
-          description: "Create users",
+          summary: "To create an inscription",
           parameters: [
             {
               in: "path",
@@ -503,6 +503,7 @@ export const swaggerOptions = {
       "/projects": {
         get: {
           tags: ["Projects"],
+          summary: "Administrators can see all the projects",
           responses: {
             200: {
               description: "Ok",
@@ -538,8 +539,7 @@ export const swaggerOptions = {
       "/projects/New": {
         post: {
           tags: ["Projects"],
-          summary: "Para empezar a llenar el esquema de pedidos",
-          description: "Para empezar a llenar datos",
+          summary: "To create a project",
           responses: {
             201: {
               description: "Created",
@@ -595,9 +595,7 @@ export const swaggerOptions = {
       "/projects/Objectives/{id}": {
         post: {
           tags: ["Projects"],
-          summary:
-            "Para que los usuarios terminen de crear sus pedidos en el sistema",
-          description: "Para terminar de crear el pedido",
+          summary: "To create the objectives",
           parameters: [
             {
               in: "path",
@@ -667,6 +665,160 @@ export const swaggerOptions = {
           },
         },
       },
+      "/projects/UpdateState/{id}": {
+        put: {
+          tags: ["Projects"],
+          summary: "Administrators can update the state of a project",
+          parameters: [
+            {
+              in: "path",
+              name: "id",
+              description: "Identificador del usuario",
+              required: true,
+              schema: {
+                type: "string",
+                example: "600b365c79bdd616403fc73b",
+              },
+            },
+          ],
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/State",
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Ok",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      msg: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            400: {
+              description: "Bad Request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      err: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            401: {
+              description: "Unauthorized",
+            },
+            404: {
+              description: "Not Found",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      err: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/projects/UpdatePhase/{id}": {
+        put: {
+          tags: ["Projects"],
+          summary: "Administrators can update the phase of a project",
+          parameters: [
+            {
+              in: "path",
+              name: "id",
+              description: "Identificador del usuario",
+              required: true,
+              schema: {
+                type: "string",
+                example: "600b365c79bdd616403fc73b",
+              },
+            },
+          ],
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/PhaseProject",
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Ok",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      msg: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            400: {
+              description: "Bad Request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      err: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            401: {
+              description: "Unauthorized",
+            },
+            404: {
+              description: "Not Found",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      err: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     security: [
       {
@@ -684,40 +836,40 @@ export const swaggerOptions = {
         User: {
           type: "object",
           required: [
-            "nombre",
-            "apellido",
-            "correo",
-            "identificacion",
-            "contraseña",
-            "rol",
-            "estado",
+            "Name",
+            "Lastname",
+            "Email",
+            "Identification",
+            "Password",
+            "Role",
+            "State",
           ],
           properties: {
-            nombre: {
+            Name: {
               type: "string",
               example: "Alexander",
             },
-            apellido: {
+            Lastname: {
               type: "string",
               example: "Arango",
             },
-            correo: {
+            Email: {
               type: "string",
               example: "a@gmail.com",
             },
-            identificacion: {
+            Identification: {
               type: "string",
               example: "1093220",
             },
-            contraseña: {
+            Password: {
               type: "string",
               example: "111111",
             },
-            rol: {
+            Role: {
               type: "string",
               example: "ESTUDIANTE",
             },
-            estado: {
+            State: {
               type: "string",
               example: "PENDIENTE",
             },
@@ -725,13 +877,13 @@ export const swaggerOptions = {
         },
         UserLogin: {
           type: "object",
-          required: ["correo", "contraseña"],
+          required: ["Email", "Password"],
           properties: {
-            correo: {
+            Email: {
               type: "string",
               example: "j.j@gmail.com",
             },
-            contraseña: {
+            Password: {
               type: "string",
               example: "111111",
             },
@@ -740,36 +892,36 @@ export const swaggerOptions = {
         UserNew: {
           type: "object",
           required: [
-            "nombre",
-            "apellido",
-            "correo",
-            "identificacion",
-            "contraseña",
-            "rol",
-            "estado",
+            "Name",
+            "Lastname",
+            "Email",
+            "Identification",
+            "Password",
+            "Role",
+            "State",
           ],
           properties: {
-            nombre: {
+            Name: {
               type: "string",
               example: "Alexander",
             },
-            apellido: {
+            Lastname: {
               type: "string",
               example: "Arango",
             },
-            correo: {
+            Email: {
               type: "string",
               example: "a@gmail.com",
             },
-            identificacion: {
+            Identification: {
               type: "string",
               example: "1093220",
             },
-            contraseña: {
+            Password: {
               type: "string",
               example: "111111",
             },
-            rol: {
+            Role: {
               type: "string",
               example: "ESTUDIANTE",
             },
@@ -777,13 +929,13 @@ export const swaggerOptions = {
         },
         UserLogin: {
           type: "object",
-          required: ["correo", "contraseña"],
+          required: ["Email", "Password"],
           properties: {
-            correo: {
+            Email: {
               type: "string",
               example: "j.j@gmail.com",
             },
-            contraseña: {
+            Password: {
               type: "string",
               example: "111111",
             },
@@ -792,45 +944,45 @@ export const swaggerOptions = {
         Project: {
           type: "object",
           required: [
-            "nombre",
-            "presupuesto",
-            "fechaInicio",
-            "fechaFin",
-            "estado",
-            "fase",
-            "lider",
-            "objetivos",
+            "Name",
+            "Budget",
+            "Initial_Date",
+            "End_Date",
+            "State",
+            "Phase",
+            "Leader",
+            "Objectives",
           ],
           properties: {
-            nombre: {
+            Name: {
               type: "string",
               example: "Project 1",
             },
-            presupuesto: {
+            Budget: {
               type: "number",
               example: 150000,
             },
-            fechaInicio: {
+            Initial_Date: {
               type: "date",
               example: "2021-11-20",
             },
-            fechaFin: {
+            End_Date: {
               type: "date",
               example: "2021-12-30",
             },
-            estado: {
+            State: {
               type: "string",
               example: "ACTIVO",
             },
-            fase: {
+            Phase: {
               type: "string",
               example: "INICIADO",
             },
-            lider: {
+            Leader: {
               type: "string",
               example: "Andres",
             },
-            objetivos: {
+            Objectives: {
               type: "array",
               items: {},
               example: [],
@@ -840,45 +992,45 @@ export const swaggerOptions = {
         Inscription: {
           type: "object",
           required: [
-            "Nameproject",
-            "fechaInicio",
-            "fechaFin",
-            "lider",
-            "estudiante",
-            "estado",
-            "fechaIngreso",
-            "fechaEgreso",
+            "Name_project",
+            "Initial_Date",
+            "End_Date",
+            "Leader",
+            "Student",
+            "State",
+            "Income_Date",
+            "Outcome_Date",
           ],
           properties: {
             Nameproject: {
               type: "string",
               example: "Project 1",
             },
-            fechaInicio: {
+            Initial_Date: {
               type: "date",
               example: "2021-11-20",
             },
-            fechaFin: {
+            End_Date: {
               type: "date",
               example: "2021-12-30",
             },
-            lider: {
+            Leader: {
               type: "string",
               example: "Andres",
             },
-            estudiante: {
+            Student: {
               type: "string",
               example: "Andres",
             },
-            estado: {
+            State: {
               type: "string",
               example: "ACTIVO",
             },
-            fechaIngreso: {
+            Income_Date: {
               type: "date",
               example: "2021-11-20",
             },
-            fechaEgreso: {
+            Outcome_Date: {
               type: "date",
               example: "2021-12-30",
             },
@@ -886,25 +1038,35 @@ export const swaggerOptions = {
         },
         Objectives: {
           type: "object",
-          required: ["descripcion", "tipo"],
+          required: ["Description", "Type"],
           properties: {
-            descripcion: {
+            Description: {
               type: "string",
-              example: "Aumentar ventas",
+              example: "Increase Sales",
             },
-            tipo: {
+            Type: {
               type: "string",
               example: "GENERAL",
             },
           },
         },
-        UserState: {
+        State: {
           type: "object",
-          required: ["estado"],
+          required: ["State"],
           properties: {
-            estado: {
+            State: {
               type: "string",
-              example: "AUTORIZADO",
+              example: "AUTHORIZED",
+            },
+          },
+        },
+        PhaseProject: {
+          type: "object",
+          required: ["Phase"],
+          properties: {
+            Phase: {
+              type: "string",
+              example: "STARTED",
             },
           },
         },

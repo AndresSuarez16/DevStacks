@@ -3,31 +3,31 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const inscriptionSchema = new Schema ({
-    Nameproject: {
+    Name_project: {
         type: String,
     },
-    fechaInicio: {
+    Initial_Date: {
         type: Date,
     },
-    fechaFin: {
+    End_Date: {
         type: Date,
     },
-    lider: {
+    Leader: {
         type: String
     },
-    estudiante: {
+    Student: {
         type: String
     },
-    estado: {
+    State: {
         type: String,
-        enum: ['ACEPTADA', 'RECHAZADA'],
-        default: 'RECHAZADA',
+        enum: ['ACCEPTED', 'REJECTED'],
+        default: 'REJECTED',
     },
-    fechaIngreso: {
+    Income_Date: {
         type: Date,
         required: true,
     },
-    fechaEgreso: {
+    Outcome_Date: {
         type: Date,
         required: true,
     },

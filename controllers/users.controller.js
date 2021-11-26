@@ -12,19 +12,19 @@ export const AllUsers = async (req, res) => {
 
 export const CreateUser = async (req, res) => {
     try {
-        const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
-        if (nombre && apellido && correo && identificacion  && contraseña && rol) {
-            const UsuarioRepetido = await User.findOne({ correo });
+        const { Name, Lastname, Email, Identification, Password, Role } = req.body;
+        if (Name && Lastname && Email && Identification  && Password && Role) {
+            const UsuarioRepetido = await User.findOne({ Email });
             if (UsuarioRepetido) {
                 res.status(400).json('The email is already registered');
             } else {
                 const user = new User({
-                    nombre,
-                    apellido,
-                    correo,
-                    identificacion,
-                    contraseña: bcrypt.hashSync(contraseña, 10),
-                    rol
+                    Name,
+                    Lastname,
+                    Email,
+                    Identification,
+                    Password: bcrypt.hashSync(contraseña, 10),
+                    Role
                 });
                 await user.save();
                 res.status(201).json('User created successfully');
@@ -35,11 +35,11 @@ export const CreateUser = async (req, res) => {
 
 export const Login = async (req, res) => {
     try {
-        const { correo, contraseña } = req.body;
-        if (correo && contraseña) {
-            const user = await User.findOne({ correo: req.body.correo });
-            const contraseña = bcrypt.compare(req.body.contraseña, user.contraseña);
-            if (!user && !contraseña) {
+        const { Email, Password } = req.body;
+        if (Email && Password) {
+            const user = await User.findOne({ Email: req.body.Email });
+            const Password = bcrypt.compare(req.body.Password, user.Password);
+            if (!user && !Password) {
                 return res.status(401).send({ auth: false, token: null });
             } else {
                 const token = jwt.sign({ id: user._id }, config.secret, {
@@ -55,8 +55,8 @@ export const Login = async (req, res) => {
 export const UpdateUsers = async (req, res) => {
     try {
         const id = req.params.id;
-        const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
-        if (nombre && apellido && correo && identificacion  && contraseña && rol) {
+        const { Name, Lastname, Email, Identification, Password, Role } = req.body;
+        if (Name && Lastname && Email && Identification  && Password && Role) {
             const updates = { ...req.body };
             const options = { new: true };
             await User.findByIdAndUpdate(id, updates, options);
@@ -68,12 +68,12 @@ export const UpdateUsers = async (req, res) => {
 export const UpdateState = async (req, res) => {
     try {
         const { id } = req.params.id;
-        const { estado } = req.body;
-        if (estado) {
+        const { State } = req.body;
+        if (State) {
             const updates = { ...req.body };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
-            res.status(200).json({ msg: 'User updated successfully' });
+            res.status(200).json({ msg: 'State of the user updated successfully' });
         } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };

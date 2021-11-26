@@ -14,7 +14,7 @@ export const AllInscriptions = async (req, res) => {
 
 export const CreateInscription = async (req, res) => {
     try {
-        const { fechaIngreso, fechaEgreso } = req.body;
+        const { Income_Date, Outcome_Date } = req.body;
         const bearerHeader = req.headers['authorization'];
         if (bearerHeader) {
             const bearer = bearerHeader.split(" ");
@@ -24,13 +24,13 @@ export const CreateInscription = async (req, res) => {
             const decoded = await jwt.verify(token, config.secret);
             const id = decoded.id;
             const user = await User.findById(id);
-            const estudiante = user.nombre;
+            const Student = user.Name;
             const project = await Project.findById(req.params.id);
-            const lider = project.lider;
-            const Nameproject = project.nombre;
-            const fechaInicio = project.fechaInicio;
-            const fechaFin = project.fechaFin;
-            const inscription = new Inscription({ Nameproject, fechaInicio, fechaFin, lider, estudiante, fechaIngreso, fechaEgreso });
+            const Leader = project.Leader;
+            const Name_project = project.Name;
+            const Initial_Date = project.Initial_Date;
+            const End_Date = project.End_Date;
+            const inscription = new Inscription({ Name_project, Initial_date, End_Date, Leader, Student, Income_Date, Outcome_Date });
             await inscription.save();
             res.status(201).json('Project created successfully');
         } else { res.status(400).json('There is no data'); }
