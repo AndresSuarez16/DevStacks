@@ -63,6 +63,7 @@ export const UpdateUsers = async (req, res) => {
             const decoded = await jwt.verify(token, config.secret);
             const id = decoded.id;
             const user = await User.findById(id);
+            console.log(user);
             if(user.rol === 'ESTUDIANTE' || user.rol === 'LIDER') {
                 const updates = { nombre, apellido, correo, identificacion, contraseña, rol };
                 const options = { new: true };
