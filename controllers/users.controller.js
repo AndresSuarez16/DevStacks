@@ -56,7 +56,7 @@ export const UpdateUsers = async (req, res) => {
     try {
         const id = req.params.id;
         const { Name, Lastname, Email, Identification, Password, Role } = req.body;
-        if (Name && Lastname && Email && Identification  && Password && Role) {
+        if (Name && Lastname && Email && Identification && Password && Role) {
             const updates = { ...req.body };
             const options = { new: true };
             await User.findByIdAndUpdate(id, updates, options);

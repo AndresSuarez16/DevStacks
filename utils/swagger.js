@@ -54,7 +54,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/UserNew",
+                  $ref: "#/components/schemas/User",
                 },
               },
             },
@@ -191,7 +191,7 @@ export const swaggerOptions = {
       "/users/UpdateData/{id}": {
         put: {
           tags: ["Users"],
-          summary: "Users can uptate their information",
+          summary: "Users can update their information",
           parameters: [
             {
               in: "path",
@@ -208,7 +208,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/UserNew",
+                  $ref: "#/components/schemas/User",
                 },
               },
             },
@@ -842,7 +842,6 @@ export const swaggerOptions = {
             "Identification",
             "Password",
             "Role",
-            "State",
           ],
           properties: {
             Name: {
@@ -869,10 +868,6 @@ export const swaggerOptions = {
               type: "string",
               example: "ESTUDIANTE",
             },
-            State: {
-              type: "string",
-              example: "PENDIENTE",
-            },
           },
         },
         UserLogin: {
@@ -886,44 +881,6 @@ export const swaggerOptions = {
             Password: {
               type: "string",
               example: "111111",
-            },
-          },
-        },
-        UserNew: {
-          type: "object",
-          required: [
-            "Name",
-            "Lastname",
-            "Email",
-            "Identification",
-            "Password",
-            "Role",
-            "State",
-          ],
-          properties: {
-            Name: {
-              type: "string",
-              example: "Alexander",
-            },
-            Lastname: {
-              type: "string",
-              example: "Arango",
-            },
-            Email: {
-              type: "string",
-              example: "a@gmail.com",
-            },
-            Identification: {
-              type: "string",
-              example: "1093220",
-            },
-            Password: {
-              type: "string",
-              example: "111111",
-            },
-            Role: {
-              type: "string",
-              example: "STUDENT",
             },
           },
         },
