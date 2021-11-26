@@ -55,16 +55,8 @@ export const Login = async (req, res) => {
 export const UpdateUsers = async (req, res) => {
     try {
         const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
-        const bearerHeader = req.headers['authorization'];
-        if (nombre && apellido && correo && identificacion  && contraseña && rol && bearerHeader) {
-            const bearer = bearerHeader.split(" ");
-            console.log(bearer);
-            const token = bearer[1];
-
-            const decoded = await jwt.verify(token, config.secret);
-            const id = decoded.id;
-            const user = await User.findById(id);
-            console.log(user);
+        if (nombre && apellido && correo && identificacion  && contraseña && rol) {
+            const user = await User.findById(req.params.id);
             if(user.rol === 'ESTUDIANTE' || user.rol === 'LIDER') {
                 const updates = { ...req.body };
                 const options = { new: true };
@@ -78,15 +70,9 @@ export const UpdateUsers = async (req, res) => {
 export const UpdateState = async (req, res) => {
     try {
         const { estado } = req.body;
-        if (bearerHeader) {
-            const bearer = bearerHeader.split(" ");
-            console.log(bearer);
-            const token = bearer[1];
-
-            const decoded = await jwt.verify(token, config.secret);
-            const id = decoded.id;
-            const user = await User.findById(id);
-            const updates = { estado };
+        if (estado) {
+            const user = await User.findById(req.params.id);
+            const updates = { ...req.body };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'User updated successfully' });

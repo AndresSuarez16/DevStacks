@@ -5,15 +5,15 @@ import { Check } from '../middlewares/token.middleware.js';
 
 const router = Router();
 
-router.get('/', Admin, Users.AllUsers);
+router.get('/', Users.AllUsers);
 
 router.post('/New', Users.CreateUser);
 
 router.post('/Login', Users.Login);
 
-router.put('/Update', Check, Users.UpdateUsers);
+router.put('/Update/:id', Users.UpdateUsers);
 
-router.put('/UpdateState', Check, Users.UpdateState);
+router.put('/UpdateState/:id', Users.UpdateState);
 
 router.delete('/Delete/:id', Admin, Users.DeleteUsers);
 
