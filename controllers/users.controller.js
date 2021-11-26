@@ -69,9 +69,8 @@ export const UpdateState = async (req, res) => {
     try {
         const { id } = req.params.id;
         const { State } = req.body;
-        const user = await User.findById(id);
-        if (user) {
-            const updates = { State };
+        if (State) {
+            const updates = { ...req.body };
             const options = { new: true };
             await User.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'State of the user updated successfully' });

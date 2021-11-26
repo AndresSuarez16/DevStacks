@@ -51,10 +51,8 @@ export const UpdateState = async (req, res) => {
     try {
         const { id } = req.params.id;
         const { State } = req.body;
-        const project = await Project.findById(id);
-        console.log(project);
-        if (project) {
-            const updates = { State };
+        if (State) {
+            const updates = { ...req.body };
             const options = { new: true };
             await Project.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'State of the project updated successfully' });
@@ -66,9 +64,8 @@ export const UpdatePhase = async (req, res) => {
     try {
         const { id } = req.params.id;
         const { Phase } = req.body;
-        const project = await Project.findById(id);
-        if (project) {
-            const updates = { Phase };
+        if (Phase) {
+            const updates = { ...req.body };
             const options = { new: true };
             await Project.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'Phase updated successfully' });
