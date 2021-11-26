@@ -347,7 +347,7 @@ export const swaggerOptions = {
             {
               in: "path",
               name: "id",
-              description: "Identificador del usuario",
+              description: "Id of the User",
               required: true,
               schema: {
                 type: "string",
@@ -433,7 +433,7 @@ export const swaggerOptions = {
             {
               in: "path",
               name: "id",
-              description: "Identificador del proyecto",
+              description: "Id of the project",
               required: true,
               schema: {
                 type: "string",
@@ -682,7 +682,7 @@ export const swaggerOptions = {
             {
               in: "path",
               name: "id",
-              description: "Identificador del usuario",
+              description: "Id of the project",
               required: true,
               schema: {
                 type: "string",
@@ -759,7 +759,7 @@ export const swaggerOptions = {
             {
               in: "path",
               name: "id",
-              description: "Identificador del usuario",
+              description: "Id of the project",
               required: true,
               schema: {
                 type: "string",
