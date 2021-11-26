@@ -540,6 +540,15 @@ export const swaggerOptions = {
         post: {
           tags: ["Projects"],
           summary: "To create a project",
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Project",
+                },
+              },
+            },
+          },
           responses: {
             201: {
               description: "Created",
@@ -908,7 +917,6 @@ export const swaggerOptions = {
             "State",
             "Phase",
             "Leader",
-            "Objectives",
           ],
           properties: {
             Name: {
@@ -938,11 +946,6 @@ export const swaggerOptions = {
             Leader: {
               type: "string",
               example: "Andres",
-            },
-            Objectives: {
-              type: "array",
-              items: {},
-              example: [],
             },
           },
         },
