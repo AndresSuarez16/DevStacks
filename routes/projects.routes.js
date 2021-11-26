@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', Projects.AllProjects);
 
-router.post('/New', Projects.CreateProject);
+router.post('/New', Check, Projects.CreateProject);
 
 router.post('/Objectives/:id', Projects.Objectives);
 
