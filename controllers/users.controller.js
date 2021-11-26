@@ -56,7 +56,7 @@ export const UpdateUsers = async (req, res) => {
     try {
         const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
         const bearerHeader = req.headers['authorization'];
-        if (bearerHeader) {
+        if (nombre && apellido && correo && identificacion  && contraseña && rol && bearerHeader) {
             const bearer = bearerHeader.split(" ");
             console.log(bearer);
             const token = bearer[1];
@@ -66,7 +66,7 @@ export const UpdateUsers = async (req, res) => {
             const user = await User.findById(id);
             console.log(user);
             if(user.rol === 'ESTUDIANTE' || user.rol === 'LIDER') {
-                const updates = { nombre, apellido, correo, identificacion, contraseña, rol };
+                const updates = { ...req.body };
                 const options = { new: true };
                 await Producto.findByIdAndUpdate(id, updates, options);
                 res.status(200).json({ msg: 'User updated successfully' });
