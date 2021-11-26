@@ -189,7 +189,7 @@ export const swaggerOptions = {
           },
         },
       },
-      "/users/Update": {
+      "/users/UpdateData/{id}": {
         put: {
           tags: ["Users"],
           parameters: [
@@ -208,7 +208,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/User",
+                  $ref: "#/components/schemas/UserNew",
                 },
               },
             },
@@ -265,7 +265,7 @@ export const swaggerOptions = {
           },
         },
       },
-      "/users/UpdateState": {
+      "/users/UpdateState/{id}": {
         put: {
           tags: ["Users"],
           parameters: [

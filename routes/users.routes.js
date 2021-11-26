@@ -11,7 +11,7 @@ router.post('/New', Users.CreateUser);
 
 router.post('/Login', Users.Login);
 
-router.put('/Update/:id', Users.UpdateUsers);
+router.put('/UpdateData/:id', Users.UpdateUsers);
 
 router.put('/UpdateState/:id', Users.UpdateState);
 
