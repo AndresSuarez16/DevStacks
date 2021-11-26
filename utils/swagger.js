@@ -866,7 +866,7 @@ export const swaggerOptions = {
             },
             Role: {
               type: "string",
-              example: "ESTUDIANTE",
+              example: "STUDENT",
             },
           },
         },
