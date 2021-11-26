@@ -53,7 +53,7 @@ export const UpdateState = async (req, res) => {
         const { State } = req.body;
         const project = await Project.findById(id);
         if (project) {
-            const updates = { ...req.body };
+            const updates = { State };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'State of the project updated successfully' });
@@ -67,7 +67,7 @@ export const UpdatePhase = async (req, res) => {
         const { Phase } = req.body;
         const project = await Project.findById(id);
         if (project) {
-            const updates = { ...req.body };
+            const updates = { Phase };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'Phase updated successfully' });
