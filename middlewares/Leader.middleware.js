@@ -2,7 +2,7 @@ import User from '../models/users.model.js';
 import jwt from 'jsonwebtoken';
 import config from '../config.js';
 
-export const Admin = async (req, res, next) =>
+export const Leader = async (req, res, next) =>
 {
     const bearerHeader = req.headers['authorization'];
     const bearer = bearerHeader.split(" ");
@@ -10,14 +10,14 @@ export const Admin = async (req, res, next) =>
 
     //Decodificar el token
     const decoded = await jwt.verify(token, config.secret);
-    const UserAdmin = await User.findById(decoded.id);
-    if(UserAdmin.rol === 'ADMINISTRADOR')
+    const UserLeader = await User.findById(decoded.id);
+    if(UserLeader.rol === 'LIDER')
     {
         next();
     }
     else {
         return res
         .status(401)
-        .send({ auth: false, msg: "You are not an administrator" });
+        .send({ auth: false, msg: "You are not an leader" });
     }
 };

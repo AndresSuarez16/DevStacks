@@ -5,7 +5,7 @@ import { Check } from '../middlewares/token.middleware.js';
 
 const router = Router();
 
-router.get('/', Users.AllUsers);
+router.get('/', Admin, Users.AllUsers);
 
 router.post('/New', Users.CreateUser);
 

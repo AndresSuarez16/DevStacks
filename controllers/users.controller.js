@@ -54,17 +54,40 @@ export const Login = async (req, res) => {
 
 export const UpdateUsers = async (req, res) => {
     try {
-        const { id } = req.params;
-        if (id) {
-            const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
+        const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
+        if (bearerHeader) {
+            const bearer = bearerHeader.split(" ");
+            console.log(bearer);
+            const token = bearer[1];
+
+            const decoded = await jwt.verify(token, config.secret);
+            const id = decoded.id;
             const user = await User.findById(id);
-            console.log(user);
             if(user.rol === 'ESTUDIANTE' || user.rol === 'LIDER') {
-                const updates = { ...req.body };
+                const updates = { nombre, apellido, correo, identificacion, contraseña, rol };
                 const options = { new: true };
                 await Producto.findByIdAndUpdate(id, updates, options);
                 res.status(200).json({ msg: 'User updated successfully' });
             }
+        } else { res.status(400).json({msg: 'There is no data'}); }
+    } catch (error) { res.status(404).json(error); }
+};
+
+export const UpdateState = async (req, res) => {
+    try {
+        const { estado } = req.body;
+        if (bearerHeader) {
+            const bearer = bearerHeader.split(" ");
+            console.log(bearer);
+            const token = bearer[1];
+
+            const decoded = await jwt.verify(token, config.secret);
+            const id = decoded.id;
+            const user = await User.findById(id);
+            const updates = { estado };
+            const options = { new: true };
+            await Producto.findByIdAndUpdate(id, updates, options);
+            res.status(200).json({ msg: 'User updated successfully' });
         } else { res.status(400).json({msg: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };

@@ -189,25 +189,78 @@ export const swaggerOptions = {
           },
         },
       },
-      "/users/Update/{id}": {
+      "/users/Update": {
         put: {
           tags: ["Users"],
-          parameters: [
-            {
-              in: "path",
-              name: "id",
-              required: true,
-              schema: {
-                type: "string",
-                example: "600b365c79bdd616403fc73a",
-              },
-            },
-          ],
           requestBody: {
             content: {
               "application/json": {
                 schema: {
                   $ref: "#/components/schemas/User",
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Ok",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      msg: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            400: {
+              description: "Bad Request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      err: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            401: {
+              description: "Unauthorized",
+            },
+            404: {
+              description: "Not Found",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      err: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/users/UpdateState": {
+        put: {
+          tags: ["Users"],
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserState",
                 },
               },
             },
@@ -760,10 +813,7 @@ export const swaggerOptions = {
         },
         Objectives: {
           type: "object",
-          required: [
-            "descripcion",
-            "tipo"
-          ],
+          required: ["descripcion", "tipo"],
           properties: {
             descripcion: {
               type: "string",
@@ -772,6 +822,16 @@ export const swaggerOptions = {
             tipo: {
               type: "string",
               example: "GENERAL",
+            },
+          },
+        },
+        UserState: {
+          type: "object",
+          required: ["ESTADO"],
+          properties: {
+            descripcion: {
+              type: "string",
+              example: "AUTORIZADO",
             },
           },
         },
