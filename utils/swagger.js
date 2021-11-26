@@ -544,7 +544,7 @@ export const swaggerOptions = {
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/Project",
+                  $ref: "#/components/schemas/ProjectNew",
                 },
               },
             },
@@ -946,6 +946,33 @@ export const swaggerOptions = {
             Leader: {
               type: "string",
               example: "Andres",
+            },
+          },
+        },
+        ProjectNew: {
+          type: "object",
+          required: [
+            "Name",
+            "Budget",
+            "Initial_Date",
+            "End_Date"
+          ],
+          properties: {
+            Name: {
+              type: "string",
+              example: "Project 1",
+            },
+            Budget: {
+              type: "number",
+              example: 150000,
+            },
+            Initial_Date: {
+              type: "date",
+              example: "2021-11-20",
+            },
+            End_Date: {
+              type: "date",
+              example: "2021-12-30",
             },
           },
         },
