@@ -923,7 +923,7 @@ export const swaggerOptions = {
             },
             Role: {
               type: "string",
-              example: "ESTUDIANTE",
+              example: "STUDENT",
             },
           },
         },
@@ -972,11 +972,11 @@ export const swaggerOptions = {
             },
             State: {
               type: "string",
-              example: "ACTIVO",
+              example: "ACTIVE",
             },
             Phase: {
               type: "string",
-              example: "INICIADO",
+              example: "STARTED",
             },
             Leader: {
               type: "string",
@@ -1024,7 +1024,7 @@ export const swaggerOptions = {
             },
             State: {
               type: "string",
-              example: "ACTIVO",
+              example: "ACTIVE",
             },
             Income_Date: {
               type: "date",
