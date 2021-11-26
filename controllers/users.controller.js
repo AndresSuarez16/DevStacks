@@ -48,7 +48,7 @@ export const Login = async (req, res) => {
                 res.status(200).json({ auth: true, token });
             }
         }
-        else { res.status(400).json({msg: 'There is no data'}); }
+        else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };
 
@@ -57,26 +57,26 @@ export const UpdateUsers = async (req, res) => {
         const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
         if (nombre && apellido && correo && identificacion  && contraseña && rol) {
             const user = await User.findById(req.params.id);
-            if(user.rol === 'ESTUDIANTE' || user.rol === 'LIDER') {
+            if(user.rol == "ESTUDIANTE" || user.rol == "LIDER") {
                 const updates = { ...req.body };
                 const options = { new: true };
                 await Producto.findByIdAndUpdate(id, updates, options);
                 res.status(200).json({ msg: 'User updated successfully' });
-            }
-        } else { res.status(400).json({msg: 'There is no data'}); }
+            } else { res.status(401).json({err: 'Unauthorized'}); }
+        } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };
 
 export const UpdateState = async (req, res) => {
     try {
+        const { id } = req.params.id;
         const { estado } = req.body;
         if (estado) {
-            const user = await User.findById(req.params.id);
             const updates = { ...req.body };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'User updated successfully' });
-        } else { res.status(400).json({msg: 'There is no data'}); }
+        } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };
 
@@ -86,6 +86,6 @@ export const DeleteUsers = async (req, res) => {
         if(id) {
             await User.findByIdAndDelete(id);
             res.status(200).json({msg: 'The user was deleted successfully'});
-        } else { res.status(400).json({msg: 'There is no data'}); }
+        } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };

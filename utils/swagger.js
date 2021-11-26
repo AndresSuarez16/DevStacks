@@ -229,6 +229,9 @@ export const swaggerOptions = {
                 },
               },
             },
+            401: {
+              description: "Unauthorized",
+            },
             400: {
               description: "Bad Request",
               content: {
@@ -243,9 +246,6 @@ export const swaggerOptions = {
                   },
                 },
               },
-            },
-            401: {
-              description: "Unauthorized",
             },
             404: {
               description: "Not Found",
