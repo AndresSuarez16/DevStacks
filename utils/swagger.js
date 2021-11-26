@@ -229,9 +229,6 @@ export const swaggerOptions = {
                 },
               },
             },
-            401: {
-              description: "Unauthorized",
-            },
             400: {
               description: "Bad Request",
               content: {
@@ -723,6 +720,20 @@ export const swaggerOptions = {
             estado: {
               type: "string",
               example: "PENDIENTE",
+            },
+          },
+        },
+        UserLogin: {
+          type: "object",
+          required: ["correo", "contraseña"],
+          properties: {
+            correo: {
+              type: "string",
+              example: "j.j@gmail.com",
+            },
+            contraseña: {
+              type: "string",
+              example: "111111",
             },
           },
         },

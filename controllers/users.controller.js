@@ -54,15 +54,13 @@ export const Login = async (req, res) => {
 
 export const UpdateUsers = async (req, res) => {
     try {
+        const id = req.params.id;
         const { nombre, apellido, correo, identificacion, contraseña, rol } = req.body;
         if (nombre && apellido && correo && identificacion  && contraseña && rol) {
-            const user = await User.findById(req.params.id);
-            if(user.rol == "ESTUDIANTE" || user.rol == "LIDER") {
-                const updates = { ...req.body };
-                const options = { new: true };
-                await Producto.findByIdAndUpdate(id, updates, options);
-                res.status(200).json({ msg: 'User updated successfully' });
-            } else { res.status(401).json({err: 'Unauthorized'}); }
+            const updates = { ...req.body };
+            const options = { new: true };
+            await User.findByIdAndUpdate(id, updates, options);
+            res.status(200).json({ msg: 'User updated successfully' });
         } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
 };
