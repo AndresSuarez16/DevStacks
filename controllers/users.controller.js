@@ -69,7 +69,8 @@ export const UpdateState = async (req, res) => {
     try {
         const { id } = req.params.id;
         const { State } = req.body;
-        if (State) {
+        const user = await User.findById(id);
+        if (user) {
             const updates = { ...req.body };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);

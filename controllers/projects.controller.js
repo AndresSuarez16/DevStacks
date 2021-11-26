@@ -51,7 +51,8 @@ export const UpdateState = async (req, res) => {
     try {
         const { id } = req.params.id;
         const { State } = req.body;
-        if (State) {
+        const project = await Project.findById(id);
+        if (project) {
             const updates = { ...req.body };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
@@ -64,7 +65,8 @@ export const UpdatePhase = async (req, res) => {
     try {
         const { id } = req.params.id;
         const { Phase } = req.body;
-        if (Phase) {
+        const project = await Project.findById(id);
+        if (project) {
             const updates = { ...req.body };
             const options = { new: true };
             await Producto.findByIdAndUpdate(id, updates, options);
