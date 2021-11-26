@@ -52,6 +52,7 @@ export const UpdateState = async (req, res) => {
         const { id } = req.params.id;
         const { State } = req.body;
         const project = await Project.findById(id);
+        console.log(project);
         if (project) {
             const updates = { State };
             const options = { new: true };
