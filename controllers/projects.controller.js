@@ -23,7 +23,7 @@ export const CreateProject = async (req, res) => {
             const decoded = await jwt.verify(token, config.secret);
             const id = decoded.id;
             const user = await User.findById(id);
-            const Leader = user.nombre;
+            const Leader = user.Name;
 
             const project = new Project({ Name, Budget, Initial_Date, End_Date, Leader });
             await project.save();
