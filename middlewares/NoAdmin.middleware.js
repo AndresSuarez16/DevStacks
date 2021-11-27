@@ -2,7 +2,7 @@ import User from '../models/users.model.js';
 import jwt from 'jsonwebtoken';
 import config from '../config.js';
 
-export const Role = async (req, res, next) =>
+export const NoAdmin = async (req, res, next) =>
 {
     const bearerHeader = req.headers['authorization'];
     const bearer = bearerHeader.split(" ");
