@@ -1,3 +1,7 @@
+import User from '../models/users.model.js';
+import jwt from 'jsonwebtoken';
+import config from '../config.js';
+
 export async function NoStudent (req, res, next)
 {
   const bearerHeader = req.headers['authorization'];
