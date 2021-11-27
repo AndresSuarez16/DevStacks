@@ -54,8 +54,7 @@ export const UpdateState = async (req, res) => {
         if (State) {
             const updates = { ...req.body };
             const options = { new: true };
-            const NewProject = await Project.findByIdAndUpdate(id, updates, options);
-            console.log(NewProject);
+            await Project.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'State of the project updated successfully' });
         } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
@@ -68,8 +67,7 @@ export const UpdatePhase = async (req, res) => {
         if (Phase) {
             const updates = { ...req.body };
             const options = { new: true };
-            const NewProject = await Project.findByIdAndUpdate(id, updates, options);
-            console.log(NewProject);
+            await Project.findByIdAndUpdate(id, updates, options);
             res.status(200).json({ msg: 'Phase updated successfully' });
         } else { res.status(400).json({err: 'There is no data'}); }
     } catch (error) { res.status(404).json(error); }
