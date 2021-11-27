@@ -11,7 +11,7 @@ export const Role = async (req, res, next) =>
     //Decodificar el token
     const decoded = await jwt.verify(token, config.secret);
     const UserRole = await User.findById(decoded.id);
-    if(UserRole.rol != 'ADMINISTRADOR')
+    if(UserRole.rol != 'ADMINISTRATOR')
     {
         next();
     }

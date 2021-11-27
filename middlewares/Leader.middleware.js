@@ -11,7 +11,7 @@ export const Leader = async (req, res, next) =>
     //Decodificar el token
     const decoded = await jwt.verify(token, config.secret);
     const UserLeader = await User.findById(decoded.id);
-    if(UserLeader.rol === 'LIDER')
+    if(UserLeader.rol === 'LEADER')
     {
         next();
     }
