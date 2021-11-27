@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import * as Inscriptions from '../controllers/inscription.controller.js';
 import { Admin } from '../middlewares/Admin.middleware.js';
-import { Check } from '../middlewares/token.middleware.js';
 
 const router = Router();
 

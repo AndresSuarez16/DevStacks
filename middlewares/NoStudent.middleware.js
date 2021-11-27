@@ -1,4 +1,4 @@
-export async function NoStudent(req, res, next)
+export async function NoStudent (req, res, next)
 {
   const bearerHeader = req.headers['authorization'];
   const bearer = bearerHeader.split(" ");
