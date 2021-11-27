@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as Users from '../controllers/users.controller.js';
-//import { Admin } from '../middlewares/Admin.middleware.js';
-//import { Leader } from '../middlewares/Leader.middleware.js';
+import { Admin } from '../middlewares/Admin.middleware.js';
+import { Leader } from '../middlewares/Leader.middleware.js';
 import { NoAdmin } from '../middlewares/NoAdmin.middleware.js';
 import { NoStudent } from '../middlewares/NoStudent.middleware.js';
 
