@@ -15,7 +15,7 @@ router.post('/Login', Users.Login);
 
 router.put('/UpdateData/:id', NoAdmin, Users.UpdateUsers);
 
-router.put('/UpdateState/:id', Leader, Admin, Users.UpdateState);
+router.put('/UpdateState/:id', NoStudent, Users.UpdateState);
 
 router.delete('/Delete/:id', Admin, Users.DeleteUsers);
 
